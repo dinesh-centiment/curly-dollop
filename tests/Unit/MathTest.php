@@ -10,6 +10,6 @@ class MathTest extends TestCase
     public function testSum(): void
     {
         $initial = new Math();
-        $this->assertSame(4, $initial->sum(1, 2));
+        $this->assertSame(3, $initial->sum(1, 2));
     }
 }
