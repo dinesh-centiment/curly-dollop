@@ -4,10 +4,8 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Log\Logger;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
-use Monolog\Handler\SlackWebhookHandler;
 
 class TestExecutionStatus extends Notification implements ShouldQueue
 {
@@ -44,11 +42,11 @@ class TestExecutionStatus extends Notification implements ShouldQueue
      */
     public function toSlack($notifiable)
     {
+        $message = $this->data['commitMessage'] . 'WAS' . $this->data['status'];
         return (new SlackMessage)
             ->warning()
-            ->content(
-                $this->data['commitMessage'] . 'WAS' . $this->data['status'] 
-            );
+            ->content($message)
+            ->color($this->data['status'] === 'failure' ? 'error' : 'success');
     }
 
     /**
