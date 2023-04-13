@@ -45,5 +45,11 @@ jobs:
         run: php artisan test
       
       - name: Notify
-        run: 'curl -X POST --data-urlencode "payload={\"channel\": \"#test\", \"username\": \"webhookbot\", \"text\": \"This is posted to #test and comes from a bot named webhookbot.\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/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'
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+              "text": "This is a test message from GitHub Actions",
+              "channel": "#test",
+              "username": "webhookbot",
+              "icon_emoji": ":ghost:"
+            }' https://hooks.slack.com/services/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
 
