@@ -15,8 +15,6 @@ class TestExecutionStatus extends Notification implements ShouldQueue
 
     public array $data;
 
-    private bool $status;
-
     /**
      * Create a new notification instance.
      *
@@ -25,7 +23,6 @@ class TestExecutionStatus extends Notification implements ShouldQueue
     public function __construct(array $data)
     {
         $this->data = $data;
-        $this->status = $data['status'] == 'failure' ? false : true;
     }
 
     /**
@@ -50,7 +47,7 @@ class TestExecutionStatus extends Notification implements ShouldQueue
         return (new SlackMessage)
             ->warning()
             ->content(
-                'Tests status ' . $this->status ? 'SUCCESS' : 'FAIL'
+                $this->data['commitMessage'] . 'WAS' . $this->data['status'] 
             );
     }
 

@@ -13,7 +13,7 @@ class SendNotifications extends Command
      *
      * @var string
      */
-    protected $signature = 'app:send-notifications {job}';
+    protected $signature = 'app:send-notifications status={status} commitMessage={commitMessage}';
 
     /**
      * The console command description.
@@ -27,7 +27,8 @@ class SendNotifications extends Command
      */
     public function handle()
     {
-        $data = json_decode($this->argument('job'), true) ?? [];
+        $data['status'] = $this->argument('status');
+        $data['commitMessage'] = $this->argument('commitMessage');
         Notification::route('slack', config('slack_webhook.test_execution_callback'))
             ->notifyNow(new TestExecutionStatus($data));
     }
