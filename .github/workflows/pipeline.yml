@@ -45,5 +45,5 @@ jobs:
         run: php artisan test
       
       - name: Notify
-        run: php artisan app:send-notifications ${{ job.status }} "${{ github.event.head_commit.message }}"
+        run: 'curl -X POST --data-urlencode "payload={\"channel\": \"#test\", \"username\": \"webhookbot\", \"text\": \"This is posted to #test and comes from a bot named webhookbot.\", \"icon_emoji\": \":ghost:\"}" https://hooks.slack.com/services/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'
 
