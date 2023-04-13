@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'slack_webhook' => [
+        'test_execution_callback' => env('SLACK_WEBHOOK_TEST_EXECUTION_CALLBACK')
+    ]
+
 ];

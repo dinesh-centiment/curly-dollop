@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
+        "laravel/slack-notification-channel": "^2.5",
         "laravel/tinker": "^2.8"
     },
     "require-dev": {
@@ -24,8 +25,12 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
+            "Database\\Seeders\\": "database/seeders/",
+            "Illuminate\\Notifications\\Messages\\": "vendor/illuminate/notifications/src/Messages"
+        },
+        "classmap": [
+            "vendor"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
