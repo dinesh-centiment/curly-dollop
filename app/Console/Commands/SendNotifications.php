@@ -25,7 +25,6 @@ class SendNotifications extends Command
         $data = [];
         $data['status'] = $this->argument('status');
         $data['commitMessage'] = $this->argument('commitMessage');
-        var_dump($data);
         Notification::route('slack', config('slack_webhook.test_execution_callback'))
             ->notifyNow(new TestExecutionStatus($data));
     }

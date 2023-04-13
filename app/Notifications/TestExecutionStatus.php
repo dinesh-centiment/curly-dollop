@@ -2,15 +2,11 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
-class TestExecutionStatus extends Notification implements ShouldQueue
+class TestExecutionStatus extends Notification
 {
-    use Queueable;
-
     public array $data;
 
     /**
