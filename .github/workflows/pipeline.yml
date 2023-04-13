@@ -43,3 +43,6 @@ jobs:
 
       - name: Run Tests
         run: php artisan test
+      
+      - name: Notify
+        run: php artisan app:send-notifications job=${{ github.job }}      
