@@ -29,14 +29,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-        
-      - name: Cache Composer packages
-        uses: actions/cache@v2
-        with:
-          path: ~/.composer/cache/files
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
 
       - name: Install Dependencies
         run: composer install
