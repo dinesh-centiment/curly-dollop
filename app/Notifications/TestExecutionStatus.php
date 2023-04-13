@@ -41,8 +41,7 @@ class TestExecutionStatus extends Notification
         $message = $this->data['commitMessage'] . 'WAS' . $this->data['status'];
         return (new SlackMessage)
             ->warning()
-            ->content($message)
-            ->color($this->data['status'] === 'failure' ? 'error' : 'success');
+            ->content("Testing");
     }
 
     /**
