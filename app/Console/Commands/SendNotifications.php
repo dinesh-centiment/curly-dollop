@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Notification;
 
 class SendNotifications extends Command
 {
-    protected string $signature = 'app:send-notifications {status} {commitMessage}';
+    protected $signature = 'app:send-notifications {status} {commitMessage}';
 
     /**
      * The console command description.
