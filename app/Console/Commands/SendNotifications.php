@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Notification;
 
 class SendNotifications extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:send-notifications status={status} commitMessage={commitMessage}';
+    protected string $signature = 'app:send-notifications {status} {commitMessage}';
 
     /**
      * The console command description.
@@ -27,6 +22,7 @@ class SendNotifications extends Command
      */
     public function handle()
     {
+        $data = [];
         $data['status'] = $this->argument('status');
         $data['commitMessage'] = $this->argument('commitMessage');
         Notification::route('slack', config('slack_webhook.test_execution_callback'))
