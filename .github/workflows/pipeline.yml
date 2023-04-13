@@ -45,11 +45,5 @@ jobs:
         run: php artisan test
       
       - name: Notify
-        run: |
-          curl -X POST -H 'Content-type: application/json' --data '{
-              "text": "This is a test message from GitHub Actions",
-              "channel": "#test",
-              "username": "webhookbot",
-              "icon_emoji": ":ghost:"
-            }' https://hooks.slack.com/services/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
+        run: php artisan app:send-notifications ${{ job.status }} "${{ github.event.head_commit.message }}"
 
