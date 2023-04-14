@@ -9,25 +9,24 @@ jobs:
   SetupMySQL:
     name: Setup MySQL
     runs-on: ubuntu-latest
-    
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_DATABASE: test
-          MYSQL_USER: test
-          MYSQL_PASSWORD: test
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
+
     steps:
-      - name: Wait for MySQL to be ready
-        run: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - name: Install dockerize
+        run: |
+          wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz
+          tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz
+          rm dockerize-linux-amd64-v0.6.1.tar.gz
+
+      - name: Start MySQL
+        run: |
+          dockerize -wait tcp://localhost:3306 -timeout 1m \
+          docker run --name mysql \
+          -e MYSQL_DATABASE=test \
+          -e MYSQL_USER=test \
+          -e MYSQL_PASSWORD=test \
+          -e MYSQL_ROOT_PASSWORD=root \
+          -p 3306:3306 \
+          -d mysql:5.7t tcp://localhost:3306 -timeout 1m
 
   RunUnitTests:
     name: Run Unit Tests
