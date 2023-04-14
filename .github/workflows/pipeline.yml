@@ -48,4 +48,4 @@ jobs:
       
       - name: Notify
         run: |
-          php artisan app:send-notifications '{"TestResult": "${{ job.RunTests.status }}"}'
+          php artisan app:send-notifications '{"TestResult": "${{ job.status }}"}'

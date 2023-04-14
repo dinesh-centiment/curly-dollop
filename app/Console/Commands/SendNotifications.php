@@ -10,7 +10,7 @@ class SendNotifications extends Command
 {
     protected $signature = 'app:send-notifications {results}';
 
-    private static $callback = 'https://hooks.slack.com/services/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';
+    private static $callback = 'https://hooks.slack.com/services/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';
 
     /**
      * The console command description.
