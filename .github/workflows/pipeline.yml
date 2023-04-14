@@ -28,6 +28,9 @@ jobs:
           -p 3306:3306 \
           -d mysql:5.7t tcp://localhost:3306 -timeout 1m
 
+      - name: Wait for MySQL
+        run: sleep 10
+
   RunUnitTests:
     name: Run Unit Tests
     runs-on: ubuntu-latest
