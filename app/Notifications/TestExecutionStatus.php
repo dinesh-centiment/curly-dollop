@@ -42,12 +42,7 @@ class TestExecutionStatus extends Notification
                 ->content('Test execution report!')
                 ->attachment(function ($attachment) {
                     $attachment
-                        ->fields([
-                            'Release' => $this->data['commitMessage'],
-                            'Status' => $this->data['status'],
-                            'Job Name' => $this->data['jobName'] ?? 'Unit test',
-                        ])
-                        ->color($this->data['status'] === 'failure' ? '#FF0000' : '#00FF00')
+                        ->fields($this->data)
                         ->timestamp(time());
                 });
     }

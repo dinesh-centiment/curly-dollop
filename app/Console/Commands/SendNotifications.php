@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Notification;
 
 class SendNotifications extends Command
 {
-    protected $signature = 'app:send-notifications {status} {commitMessage}';
+    protected $signature = 'app:send-notifications {results}';
 
-    private static $callback = 'https://hooks.slack.com/services/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';
+    private static $callback = 'https://hooks.slack.com/services/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';
 
     /**
      * The console command description.
@@ -24,9 +24,7 @@ class SendNotifications extends Command
      */
     public function handle()
     {
-        $data = [];
-        $data['status'] = $this->argument('status');
-        $data['commitMessage'] = $this->argument('commitMessage');
+        $data = json_decode($this->argument('results'), true);
         Notification::route('slack', self::$callback)
             ->notifyNow(new TestExecutionStatus($data));
     }
