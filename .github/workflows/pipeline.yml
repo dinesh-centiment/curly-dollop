@@ -46,12 +46,12 @@ jobs:
       - name: Run Feature Tests
         run: php artisan test --testsuite=Feature
 
-  # Notify:
-  #   name: Notify
-  #   needs: [RunUnitTests, RunFeatureTests]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Notify
-  #       run: |
-  #         php artisan app:send-notifications '{"unitTests": "${{ job.RunUnitTests.status }}", "FeatureTests": "${{ job.RunFeatureTests.status }}"}'
+  Notify:
+    name: Notify
+    needs: [RunTests]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify
+        run: |
+          php artisan app:send-notifications '{"TestResult": "${{ job.RunTests.status }}"}'
     
